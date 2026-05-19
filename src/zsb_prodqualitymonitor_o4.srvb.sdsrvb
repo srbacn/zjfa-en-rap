@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+    <SRVB_HF>
+      <MASTER_LANGUAGE>E</MASTER_LANGUAGE>
+      <BINDING_TYPE>ODATA</BINDING_TYPE>
+      <PROTOCOL>V4</PROTOCOL>
+      <CATEGORY>UI</CATEGORY>
+      <SERVICE_DEFINITION>ZSD_PRODQUALITYMONITOR</SERVICE_DEFINITION>
+      <DESCRIPTIONS>
+        <item>
+          <LANGUAGE>E</LANGUAGE>
+          <SHORT_TEXT>Production Quality Monitor - OData V4 Binding</SHORT_TEXT>
+        </item>
+      </DESCRIPTIONS>
+    </SRVB_HF>
+  </asx:values>
+</asx:abap>

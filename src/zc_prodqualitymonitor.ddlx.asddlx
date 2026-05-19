@@ -1,0 +1,139 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+  typeName:       'Production Order',
+  typeNamePlural: 'Production Orders',
+  title:          { type: #STANDARD, value: 'ProductionOrder' },
+  description:    { type: #STANDARD, value: 'Material' }
+}
+@UI.presentationVariant: [{
+  sortOrder: [{
+    by:         'BasicStartDate',
+    direction:  #DESC
+  }],
+  visualizations: [{
+    type: #AS_LINEITEM
+  }]
+}]
+
+annotate view ZC_ProdQualityMonitor with
+{
+  /* ======================================================
+     FACETS (Object Page layout)
+  ====================================================== */
+  @UI.facet: [
+    {
+      id:       'ProductionOrderFacet',
+      type:     #IDENTIFICATION_REFERENCE,
+      label:    'Order Details',
+      position: 10
+    },
+    {
+      id:            'InspectionLotsFacet',
+      type:          #LINEITEM_REFERENCE,
+      label:         'Inspection Lots & Defects',
+      position:      20,
+      targetElement: '_Inspections'
+    }
+  ]
+
+  /* ======================================================
+     PRODUCTION ORDER (key)
+  ====================================================== */
+  @UI.lineItem:       [{ position: 10, label: 'Production Order', importance: #HIGH }]
+  @UI.identification: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  ProductionOrder;
+
+  /* ======================================================
+     ORDER TYPE
+  ====================================================== */
+  @UI.lineItem:       [{ position: 20, label: 'Order Type' }]
+  @UI.identification: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  OrderType;
+
+  /* ======================================================
+     PLANT
+  ====================================================== */
+  @UI.lineItem:       [{ position: 30, label: 'Plant', importance: #HIGH }]
+  @UI.identification: [{ position: 30 }]
+  @UI.selectionField: [{ position: 30 }]
+  Plant;
+
+  /* ======================================================
+     MATERIAL
+  ====================================================== */
+  @UI.lineItem:       [{ position: 40, label: 'Material', importance: #HIGH }]
+  @UI.identification: [{ position: 40 }]
+  @UI.selectionField: [{ position: 40 }]
+  Material;
+
+  @UI.hidden: true
+  MaterialText;
+
+  /* ======================================================
+     DATES
+  ====================================================== */
+  @UI.lineItem:       [{ position: 50, label: 'Start Date' }]
+  @UI.identification: [{ position: 50 }]
+  @UI.selectionField: [{ position: 50 }]
+  BasicStartDate;
+
+  @UI.lineItem:       [{ position: 60, label: 'Finish Date' }]
+  @UI.identification: [{ position: 60 }]
+  @UI.selectionField: [{ position: 60 }]
+  BasicFinishDate;
+
+  /* ======================================================
+     QUANTITIES
+  ====================================================== */
+  @UI.lineItem:       [{ position: 70, label: 'Total Qty' }]
+  @UI.identification: [{ position: 70 }]
+  TotalOrderQty;
+
+  @UI.lineItem:       [{ position: 80, label: 'Scrap Qty' }]
+  @UI.identification: [{ position: 80 }]
+  ConfirmedScrapQty;
+
+  @UI.hidden: true
+  BaseUnit;
+
+  /* ======================================================
+     SCRAP RATE % - with traffic-light criticality
+  ====================================================== */
+  @UI.lineItem: [{
+    position:    90,
+    label:       'Scrap Rate (%)',
+    importance:  #HIGH,
+    criticalityCalculation: {
+      improvementDirection:       #MINIMIZE,
+      toleranceRangeLowValue:     2,
+      toleranceRangeHighValue:    5,
+      deviationRangeLowValue:     0,
+      deviationRangeHighValue:    10
+    }
+  }]
+  @UI.identification: [{ position: 90 }]
+  @UI.dataPoint: {
+    qualifier:  'ScrapRatePct',
+    title:      'Scrap Rate (%)',
+    criticalityCalculation: {
+      improvementDirection:       #MINIMIZE,
+      toleranceRangeLowValue:     2,
+      toleranceRangeHighValue:    5,
+      deviationRangeLowValue:     0,
+      deviationRangeHighValue:    10
+    }
+  }
+  ScrapRatePct;
+
+  /* ======================================================
+     ADMINISTRATIVE FIELDS
+  ====================================================== */
+  @UI.lineItem:       [{ position: 100, label: 'Created By' }]
+  @UI.identification: [{ position: 100 }]
+  CreatedBy;
+
+  @UI.hidden: true
+  OrderCreationDate;
+}

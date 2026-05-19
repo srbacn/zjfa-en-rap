@@ -1,0 +1,94 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+  typeName:       'Inspection Lot',
+  typeNamePlural: 'Inspection Lots',
+  title:          { type: #STANDARD, value: 'InspectionLot' },
+  description:    { type: #STANDARD, value: 'UsageDecisionCode' }
+}
+
+annotate view ZC_ProdQualityInspection with
+{
+  /* ======================================================
+     INSPECTION LOT (key)
+  ====================================================== */
+  @UI.lineItem:       [{ position: 10, label: 'Inspection Lot', importance: #HIGH }]
+  @UI.identification: [{ position: 10 }]
+  InspectionLot;
+
+  @UI.hidden: true
+  ProductionOrder;
+
+  /* ======================================================
+     MATERIAL & PLANT
+  ====================================================== */
+  @UI.lineItem:       [{ position: 20, label: 'Material' }]
+  @UI.identification: [{ position: 20 }]
+  Material;
+
+  @UI.lineItem:       [{ position: 30, label: 'Plant' }]
+  @UI.identification: [{ position: 30 }]
+  Plant;
+
+  /* ======================================================
+     LOT DETAILS
+  ====================================================== */
+  @UI.lineItem:       [{ position: 40, label: 'Lot Origin' }]
+  @UI.identification: [{ position: 40 }]
+  InspLotOrigin;
+
+  @UI.lineItem:       [{ position: 50, label: 'Sample Size' }]
+  @UI.identification: [{ position: 50 }]
+  SampleSize;
+
+  @UI.hidden: true
+  SampleUoM;
+
+  @UI.lineItem:       [{ position: 60, label: 'QM Notification' }]
+  @UI.identification: [{ position: 60 }]
+  QMNotification;
+
+  @UI.lineItem:       [{ position: 70, label: 'Lot Created On' }]
+  @UI.identification: [{ position: 70 }]
+  InspLotCreationDate;
+
+  @UI.hidden: true
+  DeletionFlag;
+
+  /* ======================================================
+     USAGE DECISION
+  ====================================================== */
+  @UI.lineItem: [{
+    position:    80,
+    label:       'Usage Decision',
+    importance:  #HIGH,
+    criticality: #CRITICAL
+  }]
+  @UI.identification: [{ position: 80 }]
+  UsageDecisionCode;
+
+  @UI.lineItem:       [{ position: 90, label: 'UD By' }]
+  @UI.identification: [{ position: 90 }]
+  UDCreatedBy;
+
+  @UI.lineItem:       [{ position: 100, label: 'UD Date' }]
+  @UI.identification: [{ position: 100 }]
+  UDCreationDate;
+
+  /* ======================================================
+     DEFECT COUNT - highlighted in red when > 0
+  ====================================================== */
+  @UI.lineItem: [{
+    position:   110,
+    label:      'Defects',
+    importance: #HIGH,
+    criticalityCalculation: {
+      improvementDirection:       #MINIMIZE,
+      toleranceRangeLowValue:     1,
+      toleranceRangeHighValue:    3,
+      deviationRangeLowValue:     0,
+      deviationRangeHighValue:    5
+    }
+  }]
+  @UI.identification: [{ position: 110 }]
+  DefectCount;
+}

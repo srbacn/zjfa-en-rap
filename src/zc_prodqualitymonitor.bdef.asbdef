@@ -1,0 +1,13 @@
+projection;
+strict(2);
+
+define behavior for ZC_ProdQualityMonitor
+alias ProdQualityMonitor
+{
+  use association _Inspections;
+}
+
+define behavior for ZC_ProdQualityInspection
+alias InspLot
+{
+}

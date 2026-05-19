@@ -1,0 +1,12 @@
+strict(2);
+
+define abstract behavior for ZI_ProdQualityMonitor
+alias ProdQualityMonitor
+{
+  association _Inspections;
+}
+
+define abstract behavior for ZI_ProdQualityInspection
+alias InspLot
+{
+}
