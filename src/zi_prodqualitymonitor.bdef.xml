@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+    <BDEF>
+      <BDEFNAME>ZI_PRODQUALITYMONITOR</BDEFNAME>
+      <DDLANGUAGE>E</DDLANGUAGE>
+      <DDTEXT>Production Quality Monitor - Interface Behavior Definition</DDTEXT>
+    </BDEF>
+  </asx:values>
+</asx:abap>
